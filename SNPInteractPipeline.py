@@ -14,13 +14,15 @@ def main(args):
         snps = parse_snps_geo(args.fname)
 
     snps = rename_snps(snps, snp_map)
-
+    print("Parsed SNPs")
     #snps contains DataFrame with SNP columns and sample rows
     phenotypes = read_phenotypes(args.pheno)
+    print("Parsed phenotypes")
 
     group_method = method_map[args.group_method]
 
     groups = group_method(snps.columns, *args.group_method_args)
+    print("Generated Groups")
 
     subsets = subset_wrap(snps, groups, phenotypes)
 
