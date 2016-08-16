@@ -25,7 +25,6 @@ def main(args):
 
     groups = group_method(snps.columns.tolist(), *args.group_method_args)
     print("Generated Groups")
-    print(groups)
 
     subsets = subset_wrap(snps, groups, phenotypes)
 
