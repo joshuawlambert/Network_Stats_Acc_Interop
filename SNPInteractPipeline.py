@@ -38,7 +38,7 @@ if __name__ == '__main__':
         pheno = 'phenos.txt'
         snpmap_file = 'GPL3718-44346.txt'
         group_method = 'fake'
-        group_method_args = []
+        group_method_args = [250]
 
     args = M()
     main(args)
