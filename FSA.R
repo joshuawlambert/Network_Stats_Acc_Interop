@@ -13,7 +13,7 @@ for(i in 1:(dim(df)[2]-1)){
 }
 
 ## Remove SNPs that only have one genotype
-if (length(which(vec<=1))>0){ print('yes')
+if (length(which(vec<=1))>0){ 
   keeps<-(1:(dim(df)[2]-1))[-which(vec<=1)]
   df<-df[,c(keeps,dim(df)[2])]
 }
