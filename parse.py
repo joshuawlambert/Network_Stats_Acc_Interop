@@ -67,5 +67,4 @@ def rename_snps(snp_df, snp_map):
 
 
 def read_phenotypes(pheno_file):
-    with open(pheno_file) as ph:
-        return [line.strip() for line in ph]
+    return pandas.read_table(pheno_file, index_col=0, header=None)
