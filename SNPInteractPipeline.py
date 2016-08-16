@@ -20,7 +20,7 @@ def main(args):
 
     group_method = method_map[args.group_method]
 
-    groups = group_method(*args.group_method_args)
+    groups = group_method(snps.columns, *args.group_method_args)
 
     subsets = subset_wrap(snps, groups, phenotypes)
 
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         pheno = 'phenos.txt'
         snpmap_file = 'GPL3718-44346.txt'
         group_method = 'fake'
-        group_method_args = [250]
+        group_method_args = []
 
     args = M()
     main(args)
