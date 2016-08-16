@@ -64,3 +64,4 @@ def rename_snps(snp_df, snp_map):
     """
     for i, col in enumerate(snp_df.columns):
         snp_df.columns[i] = snp_map[col]
+    return snps
