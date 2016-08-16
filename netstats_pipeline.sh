@@ -1,15 +1,17 @@
 #!/bin/bash
-
-R_HOME=/usr/bin/R
+R_BIN=/usr/bin/R
 
 # command line options
-while getopts :R:o: FLAG; do
+while getopts :D:O:R:T:V: FLAG; do
   case $FLAG in
+    D) # working directory
+      REPODIR="$OPTARG"
+      ;;
     O) # if you want to specifiy the results directory
       OUTDIR="$OPTARG"
       ;;
     R) # working directory
-      REPODIR="$OPTARG"
+      R_BIN="$OPTARG"
       ;;
     T) # table file (a.k.a association file or GSE formatted file)
       TABLE="$OPTARG"
@@ -43,9 +45,9 @@ done
 # where .clust is just a subset of the larger TABLE
 python extract_clusters.py --in-table=$TABLE  #we still need to figure out how we're subsetting -- handle in the python script.
 
-# rFSA script to 
+# call rFSA script on each cluster file
 # Instead of a for loop use gnu parallel to spawn multiple jobs
 for cluster in $REPODIR/tmp/*.clust; do
 do
-    Rscript $REPODIR/tools/rFSA.r >>$OUTDIR/clust1.results # or whatever the output is.
+    Rscript $REPODIR/tools/rFSA.r --in=$cluster >>$OUTDIR/clust1.results # or whatever the output is.
 done
