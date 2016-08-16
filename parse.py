@@ -33,3 +33,34 @@ def parse_snps_geo(snp_table, snp_map, bad_data='No Call'):
     snps.columns = [snp_map[c] for c in snps.columns]
     snps = snps.drop('', axis=1).head()
     return snps
+
+
+def generate_snp_acc_mapping(table_file):
+    """
+    Generates a mapping from SNP IDs from a platform to NCBI RS IDs. Based on one Affymetrix GEO dataset, may need
+    further tweaking.
+
+    :param table_file: Filename of table-sperated SNP info file
+    :return: dictionary mapping platform IDs to RS IDs
+    """
+    with open(table_file) as snps:
+        header = False
+        snp_map = {}
+        for snp in (l for l in snps if not l.startswith('#')):
+            if not header:
+                header = snp
+            snp = snp.split('\t')
+            snp_map[snp[0]] = snp[2] if snp[2].startswith('rs') else snp[1]
+    return snp_map
+
+
+def rename_snps(snp_df, snp_map):
+    """
+    Applies a SNP ID mapping to a SNP DataMatrix
+
+    :param snp_df: Parsed DataFrame containing SNPs (columns) for samples (rows)
+    :param snp_map: Dictionary mapping column labels to new column labels (hopefully RS IDs)
+    :return: DataFrame with renamed columns
+    """
+    for i, col in enumerate(snp_df.columns):
+        snp_df.columns[i] = snp_map[col]
