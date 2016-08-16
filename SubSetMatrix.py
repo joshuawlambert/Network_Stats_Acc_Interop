@@ -1,4 +1,4 @@
-import pandas
+import pandas as pd
 from collections import defaultdict
 
 
@@ -29,7 +29,7 @@ def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
     :param assembly: ID of assembly from which to use SNPs. Current GRCh37 or GRCh38
     :return: Dictionary containing keys of each MedGen phenotype ID mapping to lists of SNP RS IDs
     """
-    variants = pandas.read_table(clinvar_summary)
+    variants = pd.read_table(clinvar_summary)
     groups = defaultdict(list)
     for i, var in variants[variants.Assembly==assembly].iterrows():
         pheno_ids = {xr.split(':')[0]: xr.split(':')[1] for xr in var.PhenotypeIDs.split(',') if ':' in xr}
@@ -38,9 +38,6 @@ def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
         else:
             groups[None].append(var['RS# (dbSNP)'])
     return groups
-
-
-import pandas as pd
 
 
 def subset_wrap(table, groups, bad_value='No Call'):
