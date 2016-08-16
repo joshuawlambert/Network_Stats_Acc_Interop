@@ -136,7 +136,7 @@ glmFSA2=function(yname,data,fixvar=NULL,quad=F,m=2,numrs=1,save_solutions=F,core
 library(rFSA)
 
 args <- commandArgs(trailingOnly = TRUE)
-filename <- commandArgs[1]
+filename <- args[1]
 
 # Import file
 df <- read.table(filename,sep=',',header=TRUE)
