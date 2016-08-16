@@ -19,7 +19,7 @@ if (length(which(vec<=1))>0){
 }
 
 ## Run FSA
-fit<-glmFSA(yname=disname,
+fit<-glmFSA2(yname=disname,
             m=2,
             numrs=10,
             interactions = TRUE,
