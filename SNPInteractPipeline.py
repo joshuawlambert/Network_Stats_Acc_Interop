@@ -15,6 +15,8 @@ def main(args):
 
     snps = rename_snps(snps, snp_map)
     print("Parsed SNPs")
+    print(snps.head())
+    print(snps.shape)
     #snps contains DataFrame with SNP columns and sample rows
     phenotypes = read_phenotypes(args.pheno)
     print("Parsed phenotypes")
