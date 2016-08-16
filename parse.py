@@ -62,7 +62,7 @@ def rename_snps(snp_df, snp_map):
     """
     snps = snp_df
     snps.columns = [snp_map[c] for c in snps.columns]
-    snps = snps.drop('', axis=1).head()
+    snps = snps.drop('', axis=1)
     return snps
 
 
