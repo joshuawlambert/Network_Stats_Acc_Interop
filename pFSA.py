@@ -6,8 +6,8 @@ import numpy as np
 import random
 import itertools
 from time import time
-import seaborn
-from matplotlib import pyplot as plt
+#import seaborn
+#from matplotlib import pyplot as plt
 
 
 def snp_fsa_logistic(X, y, n=3, initial_cols=None, minmax='max'):
@@ -22,15 +22,7 @@ def snp_fsa_logistic(X, y, n=3, initial_cols=None, minmax='max'):
     runs = 0
     curmax, lastmax = 0, 0
 
-    for position in itertools.cycle(range(n)):
-        if runs > n and lastmax == curmax:
-             return mm_fn(results.items(), key=lambda kv: kv[1]), runs
-        random.shuffle(cols)
-        for snp in cols:
-            if not snp in current_cols:
-                current_cols[position] = snp
-                if not tuple(current_cols) in results:
-                    results[tuple(sorted(current_cols))] = evaluate(X[current_cols], y)[1]
+
         runs += 1
         lastmax = curmax
         curmax = mm_fn(results.values())
@@ -68,10 +60,9 @@ if __name__ == '__main__':
         times.append(dur)
         print(i, dur)
 
-    '''
-    for i in np.logspace(1, 4, 20):
-        random_snps, phenotypes = test_random(int(i))
+
+    for i in np.logspace(1, 3, 20):
+        random_snps, phenotypes = gen_random(int(i))
         t = time()
         snp_fsa_logistic(random_snps, phenotypes, n=3)
         print(i, time()-t)
-    '''
