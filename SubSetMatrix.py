@@ -21,23 +21,6 @@ def generate_snp_acc_mapping(table_file):
     return snp_map
 
 
-def pull_snp_variants(snp_table, snp_map):
-    """
-    Pulls SNP variants for all samples in a GEO variant table file and applies standardized IDs from a mapping.
-    Additionally removes any empty-string variants. (Affymetrix array mappings contain no RS ID for control SNPs)
-
-    :param snp_table: Filename of tab-separated table containing SNPs for samples in GEO dataset.
-    :param snp_map: Mapping of platform IDs to RS IDs for SNPs. (From generate_snp_acc_mapping()
-    :return: Pandas dataframe containing rows representing each sample and columns representing each SNP. No Calls
-    are represented by None objects
-    """
-    snps = pandas.read_table(snp_table, index_col=0).transpose()
-    snps = snps.replace('No Call', None)
-    snps.columns = [snp_map[c] for c in snps.columns]
-    snps = snps.drop('', axis=1).head()
-    return snps
-
-
 def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
     """
     Seperated ClinVar variants into groups based on their associated phenotype given a genome assembly id.
@@ -55,3 +38,33 @@ def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
         else:
             groups[None].append(var['RS# (dbSNP)'])
     return groups
+
+
+import pandas as pd
+
+
+def subset_wrap(table, groups, bad_value='No Call'):
+    """table -- is a GSE data FILE minus the HEADER
+       groups -- is a dictionary keys are group labels (phenotype for ex.), values are lists of column labels
+       returns a dictionary keys(group labels): values(sub dataframes)
+    """
+    df = pd.read_table(table, index_col=0)
+    df.replace(bad_value, '')
+
+    # call generic_subset on each group
+    sub_dfs = {}
+    for group, col_id_list in groups.items():
+        sub_dfs[group] = generic_subset(df, col_id_list)
+
+    return sub_dfs
+
+
+def generic_subset(table, group):
+    """table -- is a pandas dataframe
+       group -- is a list of col labels
+    """
+
+    subset_table = table.loc[group]
+
+    return subset_table.T  # return snps-cols, ids-rows
+
