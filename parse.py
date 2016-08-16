@@ -28,7 +28,7 @@ def parse_snps_geo(snp_table, bad_data='No Call'):
     :return: Pandas dataframe containing rows representing each sample and columns representing each SNP. No Calls
     are represented by None objects
     """
-    snps = pandas.read_table(snp_table, index_col=0).T
+    snps = pandas.read_table(snp_table, index_col=0, comment='!').T
     snps = snps.replace(bad_data, None)
     return snps
 
