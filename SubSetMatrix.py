@@ -40,7 +40,7 @@ def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
     return groups
 
 
-def subset_wrap(table, groups, dependents, bad_value='No Call'):
+def subset_wrap(table, groups, dependents):
     """table is a pandas DataFrame
        groups is a dictionary keys are group labels (phenotype for ex.), values are lists of column labels
        dependents is a list the length of the number of samples
@@ -48,7 +48,6 @@ def subset_wrap(table, groups, dependents, bad_value='No Call'):
     """
     df = table
     df['dependent'] = dependents #This is the dependent variable
-    df.replace(bad_value, '')
     
     # call generic_subset on each group
     sub_dfs = {}

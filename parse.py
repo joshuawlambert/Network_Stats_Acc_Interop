@@ -18,7 +18,7 @@ def read_vcf(filename):
     snps = snps.iloc[:,9:].T
     return snps
 
-def parse_snps_geo(snp_table, snp_map, bad_data='No Call'):
+def parse_snps_geo(snp_table, bad_data='No Call'):
     """
     Pulls SNP variants for all samples in a GEO variant table file and applies standardized IDs from a mapping.
     Additionally removes any empty-string variants. (Affymetrix array mappings contain no RS ID for control SNPs)
@@ -30,8 +30,6 @@ def parse_snps_geo(snp_table, snp_map, bad_data='No Call'):
     """
     snps = pandas.read_table(snp_table, index_col=0).T
     snps = snps.replace(bad_data, None)
-    snps.columns = [snp_map[c] for c in snps.columns]
-    snps = snps.drop('', axis=1).head()
     return snps
 
 
@@ -62,6 +60,12 @@ def rename_snps(snp_df, snp_map):
     :param snp_map: Dictionary mapping column labels to new column labels (hopefully RS IDs)
     :return: DataFrame with renamed columns
     """
-    for i, col in enumerate(snp_df.columns):
-        snp_df.columns[i] = snp_map[col]
+    snps = snp_df
+    snps.columns = [snp_map[c] for c in snps.columns]
+    snps = snps.drop('', axis=1).head()
     return snps
+
+
+def read_phenotypes(pheno_file):
+    with open(pheno_file) as ph:
+        return [line.strip() for line in ph]
