@@ -29,7 +29,7 @@ def parse_snps_geo(snp_table, bad_data='No Call'):
     are represented by None objects
     """
     snps = pandas.read_table(snp_table, index_col=0, comment='!').T
-    snps = snps.replace(bad_data, None)
+    snps = snps.replace(bad_data, '')
     return snps
 
 
