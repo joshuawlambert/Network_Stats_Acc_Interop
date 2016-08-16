@@ -1,4 +1,5 @@
 import tempfile, subprocess
+import pandas as pd
 
 def fsa_wrapper(sdf, key):
     tmpdir = tempfile.mkdtemp()
