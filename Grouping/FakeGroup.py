@@ -10,3 +10,7 @@ def chunks(l, n):
 
 def generate_groups(snp_ids, group_size=250):
     return {i: groups for i, groups in enumerate(chunks(snp_ids, group_size))}
+
+def generate_one_group(snp_ids):
+    return {'all': snp_ids}
+    

@@ -1,6 +1,6 @@
 import argparse
 
-from parse import read_vcf, parse_snps_geo, read_phenotypes, generate_snp_acc_mapping, rename_snps
+from parse import read_vcf, parse_snps_geo, read_phenotypes, generate_snp_acc_mapping, rename_snps, extract_geo_phenotypes
 from SubSetMatrix import subset_wrap
 from Grouping import method_map
 from FSA import fsa_wrapper
@@ -10,15 +10,16 @@ def main(args):
 
     if args.ftype=='VCF':
         snps = read_vcf(args.fname)
+        phenotypes = read_phenotypes(args.pheno).iloc[:,0]
+        print("Parsed phenotypes")    
     elif args.ftype=='GEO':
         snps = parse_snps_geo(args.fname)
-
+        phenotypes = extract_geo_phenotypes(args.fname)
+        print("Parse phenotypes")
+        
     snps = rename_snps(snps, snp_map)
     print("Parsed SNPs")
     #snps contains DataFrame with SNP columns and sample rows
-
-    phenotypes = read_phenotypes(args.pheno).iloc[:,0]
-    print("Parsed phenotypes")
 
     group_method = method_map[args.group_method]
 
