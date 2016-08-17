@@ -33,7 +33,7 @@ def parse_snps_geo(snp_table, bad_data='No Call'):
     return snps
 
 
-def generate_snp_acc_mapping(table_file):
+def generate_snp_acc_mapping(table_file, snp_id_label='SNP_ID'):
     """
     Generates a mapping from SNP IDs from a platform to NCBI RS IDs. Based on one Affymetrix GEO dataset, may need
     further tweaking.
@@ -46,9 +46,10 @@ def generate_snp_acc_mapping(table_file):
         snp_map = {}
         for snp in (l for l in snps if not l.startswith('#')):
             if not header:
-                header = snp
+                header = snp.split('\t')
+                mat_id, rs_id = header.index('ID'), header.index(snp_id_label)
             snp = snp.split('\t')
-            snp_map[snp[0]] = snp[2] if snp[2].startswith('rs') else snp[1]
+            snp_map[snp[mat_id]] = snp[rs_id] if snp[rs_id].startswith('rs') else snp[mat_id]
     return snp_map
 
 
