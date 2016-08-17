@@ -47,9 +47,6 @@ def subset_wrap(table, groups, dependents, minimum=100, maximum=1000):
        returns a dictionary keys(group labels): values(sub dataframes)
     """
     df = table
-    print(df.head())
-    print(groups['all'][:10])
-    print(dependents)
     levels = list(set(dependents.tolist()))
     df['dependent'] = [levels.index(d) for d in dependents] #This is the dependent variable
     
@@ -67,7 +64,7 @@ def generic_subset(table, col_list, minimum, maximum):
     avail_cols = set(col_list).intersection(table.columns)
     
     
-    if minimum < len(avail_cols) < maximum: #small groups of snps won't yeild meaningful results, large groups are (currently) too big
+    if minimum > len(avail_cols) > maximum: #small groups of snps won't yeild meaningful results, large groups are (currently) too big
         return
     subset_table = table[list(avail_cols)+['dependent']]
     
