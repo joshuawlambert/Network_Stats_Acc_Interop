@@ -6,7 +6,7 @@ from Grouping import method_map
 from FSA import fsa_wrapper
 
 def main(args):
-    snp_map = generate_snp_acc_mapping(args.snpmap_file)
+    snp_map = generate_snp_acc_mapping(args.snpmap_file, args.snp_id_label)
 
     if args.ftype=='VCF':
         snps = read_vcf(args.fname)
@@ -39,6 +39,7 @@ if __name__ == '__main__':
         fname = 'myeloma/GSE66903_series_matrix.txt'
         ftype = 'GEO'
         pheno = 'phenos.txt'
+        snp_id_lable = 'SNP_ID'
         snpmap_file = 'myeloma/GPL6801-4019.txt'
         group_method = 'fake'
         group_method_args = []
