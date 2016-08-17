@@ -42,7 +42,7 @@ if __name__ == '__main__':
     parser.add_argument('--snp-mapping-file', nargs=1, dest='snpmap_file')
     parser.add_argument('--grouping-method', nargs=1, dest='group_method')
     parser.add_argument('--grouping-method-args', nargs='+', dest='group_method_args')
-    parser.add_argument('--restrict-subset-size', nargs='2', dest='subset_method_args')
+    parser.add_argument('--restrict-subset-size', nargs=2, dest='subset_method_args')
     args = parser.parse_args()
 
     class M():
