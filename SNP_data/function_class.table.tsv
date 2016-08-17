@@ -1,0 +1,29 @@
+#Function Class Term	# of Entries	records downloaded
+stop loss 	23436	6006
+stop lost 	23547	
+splice 3 	143113	
+splice acceptor variant 	143113	
+splice 5 	209277	
+splice donor variant 	209277	
+cds indel 	230100	120971
+stop gain 	308010	
+stop gained 	309354	
+nonsense 	331328	
+frameshift 	391254	197416
+frameshift variant 	419001	
+utr 5 	3984320	
+utr variant 5 prime	4011289	
+gene segment 	7390749	
+nc transcript variant 	7390749	
+synonymous codon 	7795672	
+utr 3 	8778108	
+downstream variant 500b 	8988972	
+near gene 3 	8988972	
+utr variant 3 prime 	9016850	
+missense 	10706690	
+reference 	18949847	
+near gene 5 	32739015	
+upstream variant 2kb 	32739015	
+intron 	291536061	
+intron variant 	291536061	
+#TOTAL	747293180	

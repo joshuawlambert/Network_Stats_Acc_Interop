@@ -1,0 +1,27 @@
+#Function Class Term	# of Entries
+cds indel	230100
+downstream variant 500b	8988972
+frameshift	391254
+gene segment	7390749
+intron	291536061
+intron variant	291536061
+missense	10706690
+nc transcript variant	7390749
+near gene 3	8988972
+near gene 5	32739015
+nonsense	331328
+reference	18949847
+splice 3	143113
+splice 5	209277
+splice acceptor variant	143113
+splice donor variant	209277
+stop gain	308010
+stop gained	309354
+stop loss	23436
+stop lost	23547
+synonymous codon	7795672
+upstream variant 2kb	32739015
+utr 3	8778108
+utr 5	3984320
+utr variant 3 prime	9016850
+utr variant 5 prime	4011289
