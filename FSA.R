@@ -145,11 +145,17 @@ disname<-colnames(df)[dim(df)[2]]
 ## Remove columns with SNPs showing only one state
 vec<-rep(NA,dim(df)[2]-1)
 for(i in 1:(dim(df)[2]-1)){
-  vec[i]<-length(levels(df[,i]))
+  snp<-df[,i]
+  vec[i]<-length(levels(snp))
 }
 
-## SNPs that cannot be included becuase they only have one category:
-newdf<-df[,-which(vec<=1)]
+## Remove SNPs that only have one genotype
+if (length(which(vec<=1))>0){ 
+  keeps<-(1:(dim(df)[2]-1))[-which(vec<=1)]
+  df<-df[,c(keeps,dim(df)[2])]
+}
+
+
 
 ## Run FSA
 fit<-glmFSA2(yname=disname,
@@ -159,7 +165,7 @@ fit<-glmFSA2(yname=disname,
             save_solutions = TRUE,
             minmax = "min",
             criterion = int.p.val,
-            data=newdf)
+            data=df)
 
 ## Results output to 'FSAsolutions.csv'
 
