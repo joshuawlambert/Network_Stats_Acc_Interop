@@ -27,7 +27,7 @@ if (length(which(vec<=1))>0){
 ## Run FSA
 fit<-genFSA(yname=disname,
             m=2,
-            numrs=10,
+            numrs=5,
             cores=16,
             interactions = TRUE,
             save_solutions = TRUE,
