@@ -60,13 +60,12 @@ def subset_wrap(table, groups, dependents):
 
 def generic_subset(table, col_list):
     """table is a pandas dataframe
-       snplist is a list of ids"""    
-    col_list.append('dependent')
-    
+       snplist is a list of ids"""
     avail_cols = set(col_list).intersection(table.columns)
     if len(avail_cols) == 1: #dependent column only
         return # There are no snps in your study for phenotype group x
     subset_table = table[list(avail_cols)]
+    subset_table['dependent'] = table['dependent']
     
     return subset_table #pandas dataframe
 
