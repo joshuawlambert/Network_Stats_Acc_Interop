@@ -39,3 +39,7 @@ https://github.com/jmsuk0587/rFSA
 # Execution
 
     python SNPInteractPipeline.py --filename GSE66903_series_matrix.txt --snp-id-label SNP_ID --snp-mapping-file GPL6801-4019 --grouping-method all --restrict-subset-size 100 10000000 --fsa-method FSA_nogroups.R
+
+# Runtime
+
+The runtime of this pipeline is based on the number of SNP's, subsets, and samples, as well as the size of the subsets. Thus for the time being more testing is needed before an acurate runtime can be established.
