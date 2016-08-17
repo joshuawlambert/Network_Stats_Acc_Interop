@@ -47,6 +47,9 @@ def subset_wrap(table, groups, dependents, minimum=100, maximum=1000):
        returns a dictionary keys(group labels): values(sub dataframes)
     """
     df = table
+    print(df.head())
+    print(groups['all'][:10])
+    print(dependents)
     levels = list(set(dependents.tolist()))
     df['dependent'] = [levels.index(d) for d in dependents] #This is the dependent variable
     
