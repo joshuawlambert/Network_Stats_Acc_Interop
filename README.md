@@ -1,5 +1,5 @@
 # SNP Feasible Solutions Algorithm
-______ is a pipeline for applying statistical analysis tools to identify interactions between SNPs and their effects on phenotypic expression.
+SNPs FSA is a pipeline for applying statistical analysis tools to identify interactions between SNPs and their effects on phenotypic expression.
 
 # Introduction
 This pipeline allows users to access and apply new statistical analysis tools to indentify possible phenotypic outcomes
@@ -34,4 +34,7 @@ https://www.r-project.org/
 
 ##### The rFSA Package
 
+https://github.com/jmsuk0587/rFSA
+
 # Execution
+
