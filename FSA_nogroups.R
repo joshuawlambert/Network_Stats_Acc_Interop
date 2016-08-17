@@ -28,6 +28,7 @@ if (length(which(vec<=1))>0){
 fit<-genFSA(yname=disname,
             m=2,
             numrs=10,
+            cores=16,
             interactions = TRUE,
             save_solutions = TRUE,
             minmax = "min",
