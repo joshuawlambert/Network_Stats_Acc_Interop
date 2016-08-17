@@ -18,8 +18,6 @@ R package, rFSA, tools to be used.
 
 Dependencies for our pipeline include up to date versions for Python and R. The user must also download rFSA R utils package, and pandas package for python.
 
-# Computing Environment & Speed
-
 # Installed Software
 
 ### Python 2.7+
@@ -40,3 +38,4 @@ https://github.com/jmsuk0587/rFSA
 
 # Execution
 
+    python SNPInteractPipeline.py --filename GSE66903_series_matrix.txt --snp-id-label SNP_ID --snp-mapping-file GPL6801-4019 --grouping-method all --restrict-subset-size 100 10000000 --fsa-method FSA_nogroups.R
