@@ -35,6 +35,15 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Associate SNP pair interactions with phenotype.')
+    parser.add_argument('--filename', nargs=1, dest='fname')
+    parser.add_argument('--filetype', nargs=1,  dest='ftype')
+    parser.add_argument('--pheno-file', nargs=1, dest='pheno')
+    parser.add_argument('--snp-id-label', nargs=1, dest='snp_id_label')
+    parser.add_argument('--snp-mapping-file', nargs=1, dest='snpmap_file')
+    parser.add_argument('--grouping-method', nargs=1, dest='group_method')
+    parser.add_argument('--grouping-method-args', nargs='+', dest='group_method_args')
+    parser.add_argument('--restrict-subset-size', nargs='2', dest='subset_method_args')
+    args = parser.parse_args()
 
     class M():
         fname = 'myeloma/GSE66903_series_matrix.txt'
