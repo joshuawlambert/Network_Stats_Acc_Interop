@@ -42,7 +42,7 @@ if __name__ == '__main__':
         pheno = 'phenos.txt'
         snp_id_label = 'SNP_ID'
         snpmap_file = '../myeloma/GPL6801-4019.txt'
-        group_method = 'fake'
+        group_method = 'all'
         group_method_args = []
         subset_method_args = []
 
