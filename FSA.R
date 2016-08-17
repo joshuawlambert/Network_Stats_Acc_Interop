@@ -4,6 +4,7 @@ library(rFSA)
 args <- commandArgs(trailingOnly = TRUE)
 filename <- args[1]
 
+
 # Import file
 df <- read.table(filename,sep=',',header=TRUE)
 disname<-colnames(df)[dim(df)[2]]
