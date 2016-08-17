@@ -53,7 +53,7 @@ if __name__ == '__main__':
         snpmap_file = '../myeloma/GPL6801-4019.txt'
         group_method = 'all'
         group_method_args = []
-        subset_method_args = []
+        subset_method_args = [100, 10000000]
         fsa_method = 'FSA_nogroups.R'
 
     args = M()
