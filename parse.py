@@ -69,3 +69,22 @@ def rename_snps(snp_df, snp_map):
 
 def read_phenotypes(pheno_file):
     return pandas.read_table(pheno_file, index_col=0, header=None)
+
+
+def extract_geo_phenotypes(geo_file, phenotype_name='!Sample_characteristics_ch1'):
+    with open(geo_file) as series_matrix:
+        both = 0
+        for meta in series_matrix:
+            if both == 2:
+                break
+            if meta.startswith('!Sample_geo_accession'):
+                sample_list = [_.strip('"\n') for _ in meta.split('\t')]
+                sample_list.remove('!Sample_geo_accession')
+                both+=1
+            if meta.startswith(phenotype_labels):
+                sample_phens = [_.strip('"\n') for _ in meta.split('\t')]
+                sample_phens.remove(phenotype_name)
+                both+=1
+        
+    phens = pd.DataFrame({'phenotype': sample_phens}, index=sample_list)
+    return phens.iloc[:,0]
