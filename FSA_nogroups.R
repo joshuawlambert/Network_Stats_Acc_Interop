@@ -32,7 +32,7 @@ fit<-genFSA(yname=disname,
             save_solutions = TRUE,
             minmax = "min",
             criterion = int.p.val,
-            checknum=100,
+            checknum=5000,
             data=df)
 
 ## Results output to 'FSAsolutions.csv'
