@@ -25,7 +25,7 @@ def main(args):
     groups = group_method(snps.columns.tolist(), *args.group_method_args)
     print("Generated Groups")
 
-    subsets = subset_wrap(snps, groups, phenotypes)
+    subsets = subset_wrap(snps, groups, phenotypes, *args.subset_method_args)
 
     for group, subset in subsets.items():
         #call FSA here
@@ -36,12 +36,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Associate SNP pair interactions with phenotype.')
 
     class M():
-        fname = 'lapro/GSE63236_series_matrix_noheader.txt'
+        fname = 'myeloma/GSE66903_series_matrix.txt'
         ftype = 'GEO'
         pheno = 'phenos.txt'
-        snpmap_file = 'GPL3718-44346.txt'
+        snpmap_file = 'myeloma/GPL6801-4019.txt'
         group_method = 'fake'
         group_method_args = []
+        subset_method_args = []
 
     args = M()
     main(args)

@@ -1,7 +1,5 @@
 from collections import defaultdict
-
 import pandas as pd
-
 
 def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
     """
@@ -16,7 +14,20 @@ def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
     for i, var in variants[variants.Assembly==assembly].iterrows():
         pheno_ids = {xr.split(':')[0]: xr.split(':')[1] for xr in var.PhenotypeIDs.split(',') if ':' in xr}
         if 'MedGen' in pheno_ids:
-            groups[pheno_ids['MedGen']].append(var['RS# (dbSNP)'])
+            groups[pheno_ids['MedGen']].append('rs' + str(var['RS# (dbSNP)']))
         else:
-            groups[None].append(var['RS# (dbSNP)'])
-    return groups
+            groups[None].append('rs' + str(var['RS# (dbSNP)']))
+    return groups # {C12345: [rs1234, rs1234], ...}
+
+def generate_groups(snplist, clinvar_summary_file='/media/sf_ubuntuVbox/hackathon/clinvar_variant_summary.txt'):
+    '''
+    clinvar_summary_file is the absolute path to to the clinvar summary file (downloadable from...???)
+    
+    returns a list, snps that are in clinvar that are also in phenotype groups
+    '''
+    cv_groups = find_clinvar_groups(clinvar_summary_file)
+    
+    for k,v in cv_groups.items():
+        cv_groups[k] = list(set(v).intersection(snplist))
+        
+    return cv_groups

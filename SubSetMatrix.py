@@ -40,7 +40,7 @@ def find_clinvar_groups(clinvar_summary, assembly='GRCh37'):
     return groups
 
 
-def subset_wrap(table, groups, dependents):
+def subset_wrap(table, groups, dependents, minimum=100, maximum=1000):
     """table is a pandas DataFrame
        groups is a dictionary keys are group labels (phenotype for ex.), values are lists of column labels
        dependents is a list the length of the number of samples
@@ -53,17 +53,19 @@ def subset_wrap(table, groups, dependents):
     # call generic_subset on each group
     sub_dfs = {}
     for group, col_id_list in groups.items():
-        sub_dfs[group] = generic_subset(df, col_id_list)
+        sub_dfs[group] = generic_subset(df, col_id_list, minimum, maximum)
  
     return sub_dfs
 
 
-def generic_subset(table, col_list):
+def generic_subset(table, col_list, minimum, maximum):
     """table is a pandas dataframe
        snplist is a list of ids"""
     avail_cols = set(col_list).intersection(table.columns)
-    if len(avail_cols) == 1: #dependent column only
-        return # There are no snps in your study for phenotype group x
+    
+    
+    if minimum < len(avail_cols) < maximum: #small groups of snps won't yeild meaningful results, large groups are (currently) too big
+        return
     subset_table = table[list(avail_cols)+['dependent']]
     
     return subset_table #pandas dataframe
