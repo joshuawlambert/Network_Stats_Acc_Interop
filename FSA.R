@@ -6,7 +6,7 @@ filename <- args[1]
 
 
 # Import file
-df <- read.table(filename,sep=',',header=TRUE)
+df <- read.table(filename,sep=',',header=TRUE, row.names=1, na.strings='')
 disname<-colnames(df)[dim(df)[2]]
 
 ## Remove columns with SNPs showing only one state
