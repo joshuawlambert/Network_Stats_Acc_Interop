@@ -46,12 +46,12 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     class M():
-        fname = 'myeloma/GSE66903_series_matrix.txt'
+        fname = '../myeloma/GSE66903_series_matrix.txt'
         ftype = 'GEO'
         pheno = 'phenos.txt'
-        snp_id_lable = 'SNP_ID'
-        snpmap_file = 'myeloma/GPL6801-4019.txt'
-        group_method = 'fake'
+        snp_id_label = 'SNP_ID'
+        snpmap_file = '../myeloma/GPL6801-4019.txt'
+        group_method = 'all'
         group_method_args = []
         subset_method_args = []
 

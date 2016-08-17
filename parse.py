@@ -71,7 +71,7 @@ def read_phenotypes(pheno_file):
     return pandas.read_table(pheno_file, index_col=0, header=None)
 
 
-def extract_geo_phenotypes(geo_file, phenotype_name='!Sample_characteristics_ch1'):
+def extract_geo_phenotypes(geo_file, phenotype_labels='!Sample_characteristics_ch1'):
     with open(geo_file) as series_matrix:
         both = 0
         for meta in series_matrix:
@@ -83,8 +83,8 @@ def extract_geo_phenotypes(geo_file, phenotype_name='!Sample_characteristics_ch1
                 both+=1
             if meta.startswith(phenotype_labels):
                 sample_phens = [_.strip('"\n') for _ in meta.split('\t')]
-                sample_phens.remove(phenotype_name)
+                sample_phens.remove(phenotype_labels)
                 both+=1
         
-    phens = pd.DataFrame({'phenotype': sample_phens}, index=sample_list)
+    phens = pandas.DataFrame({'phenotype': sample_phens}, index=sample_list)
     return phens.iloc[:,0]
