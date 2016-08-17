@@ -86,5 +86,5 @@ def extract_geo_phenotypes(geo_file, phenotype_labels='!Sample_characteristics_c
                 sample_phens.remove(phenotype_labels)
                 both+=1
         
-    phens = pd.DataFrame({'phenotype': sample_phens}, index=sample_list)
+    phens = pandas.DataFrame({'phenotype': sample_phens}, index=sample_list)
     return phens.iloc[:,0]
