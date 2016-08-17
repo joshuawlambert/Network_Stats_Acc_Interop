@@ -30,7 +30,7 @@ def main(args):
 
     for group, subset in subsets.items():
         #call FSA here
-        print(fsa_wrapper(subset, group))
+        print(fsa_wrapper(subset, group, args.fsa_method))
 
 
 if __name__ == '__main__':
@@ -54,6 +54,7 @@ if __name__ == '__main__':
         group_method = 'all'
         group_method_args = []
         subset_method_args = []
+        fsa_method = 'FSA_nogroups.R'
 
     args = M()
     main(args)
