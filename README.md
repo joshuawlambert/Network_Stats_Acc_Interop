@@ -13,15 +13,25 @@ This pipeline uses a set of python script converters to generate the input files
 R package, rFSA, tools to be used.
 
 # Dependencies
-Dependencies for our pipeline include
+
+Dependencies for our pipeline include up to date versions for Python and R. The user must also download rFSA R utils package, and pandas package for python.
+
 # Computing Environment & Speed
 
 # Installed Software
 
 ### Python 2.7+
 
+https://www.python.org/downloads/
+
 ##### Pandas
+
+http://pandas.pydata.org/pandas-build/dev/
 
 ### R 3.3.1+
 
+https://www.r-project.org/
+
 ##### The rFSA Package
+
+# Execution
