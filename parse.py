@@ -83,7 +83,7 @@ def extract_geo_phenotypes(geo_file, phenotype_labels='!Sample_characteristics_c
                 both+=1
             if meta.startswith(phenotype_labels):
                 sample_phens = [_.strip('"\n') for _ in meta.split('\t')]
-                sample_phens.remove(phenotype_label)
+                sample_phens.remove(phenotype_labels)
                 both+=1
         
     phens = pd.DataFrame({'phenotype': sample_phens}, index=sample_list)
