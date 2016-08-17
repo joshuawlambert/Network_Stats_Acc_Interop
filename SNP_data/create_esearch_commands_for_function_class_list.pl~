@@ -1,0 +1,52 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+# Usage: perl 
+my $file = shift @ARGV;
+
+open (LIST,"<$file");
+
+print "#Function Class Term\t# of Entries\n";
+while (<LIST>) {
+	chomp;
+	my $cmd = "esearch -db snp -query \"$_\"";
+	
+	my $res = `$cmd`;
+
+	#print "$res\n";
+
+	$_ =~ s/\[Function Class\]//;
+	my $class = $_;
+
+	if ($res =~ /<Count>(\d+?)<\/Count>/) {
+		my $count = $1;
+		print "$_\t$count\n";
+	}
+
+
+}
+
+close LIST;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
