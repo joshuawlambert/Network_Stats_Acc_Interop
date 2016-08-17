@@ -47,7 +47,7 @@ def subset_wrap(table, groups, dependents):
        returns a dictionary keys(group labels): values(sub dataframes)
     """
     df = table
-    levels = list(set(dependents))
+    levels = list(set(dependents.tolist()))
     df['dependent'] = [levels.index(d) for d in dependents] #This is the dependent variable
     
     # call generic_subset on each group
