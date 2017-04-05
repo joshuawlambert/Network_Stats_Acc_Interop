@@ -34,7 +34,7 @@ https://www.r-project.org/
 
 ##### The rFSA Package
 
-https://github.com/jmsuk0587/rFSA
+https://github.com/joshuawlambert/rFSA
 
 # Execution
 
